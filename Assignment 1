@@ -1,0 +1,23 @@
+#1 
+def hospital_fee(**kwargs):
+    max_amount = 0
+    max_payers = []
+
+    for payer, amount in kwargs.items():
+        if amount > max_amount:
+            max_amount = amount
+            max_payers = [payer]
+        elif amount == max_amount:
+            max_payers.append(payer)
+
+    return max_amount, max_payers
+
+# Example usage:
+max_amount, max_payers = hospital_fee(Neymar= 1000, Dembele = 600, Reus=500, Bale=1000)
+print(f"Highest fee was {max_amount} tk")
+print("which was paid by")
+print(', '.join(max_payers))
+
+max_amount, max_payers = hospital_fee(Mashrafe=400, Bumrah=900, Steyn=1200, Cummins=900, Wood=400, Marsh=700)
+print(f"Highest fee was {max_amount} tk")
+print("which was paid by" , ', '.join(max_payers))
