@@ -21,3 +21,109 @@ print(', '.join(max_payers))
 max_amount, max_payers = hospital_fee(Mashrafe=400, Bumrah=900, Steyn=1200, Cummins=900, Wood=400, Marsh=700)
 print(f"Highest fee was {max_amount} tk")
 print("which was paid by" , ', '.join(max_payers))
+
+#2
+def is_james_bond(nums):
+    for i in range(len(nums) - 2):
+        if nums[i] == 0 and nums[i+1] == 0 and nums[i+2] == 7:
+            return True
+    return False
+
+
+result = is_james_bond([1, 2, 4, 0, 0, 7, 5])
+print(result)
+
+#3
+def calculate_ascii_sum(name):
+    ascii_sum = 0
+    for char in name:
+        ascii_sum += ord(char)
+    return ascii_sum
+
+def assign_students_to_sections(sections, *student_names):
+    section_dict = {section: [] for section in sections}
+
+    for name in student_names:
+        name_sum = calculate_ascii_sum(name)
+        section_index = name_sum % len(sections)
+        section_key = sections[section_index]
+        section_dict[section_key].append(name)
+
+    return section_dict
+
+# Example usage:
+result = assign_students_to_sections('ABCDE', 'Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace')
+print(result)
+
+#4
+def calculate_ascii_sum(name):
+    ascii_sum = 0
+    for char in name:
+        ascii_sum += ord(char)
+    return ascii_sum
+
+def assign_students_to_sections(sections, *student_names):
+    section_dict = {section: [] for section in sections}
+
+    for name in student_names:
+        name_sum = calculate_ascii_sum(name)
+        section_index = name_sum % len(sections)
+        section_key = sections[section_index]
+        section_dict[section_key].append(name)
+
+    return section_dict
+
+# Example usage:
+result = assign_students_to_sections('ABCDE', 'Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace')
+print(result)
+
+#5
+def username_generator(first_name, last_name, student_id, middle_name=""):
+    first_part = first_name[:3].upper()
+    middle_part = middle_name
+    last_part = last_name[-3:].lower()
+    id_part = str(student_id)[-4:]
+
+    username = first_part + middle_part + last_part + "_" + id_part
+    return username
+
+# Example usage:
+first_name = input("First Name: ")
+middle_name = input("Middle Name: ")
+last_name = input("Last Name: ")
+student_id = int(input("Student ID: "))
+
+
+print(iusername_generator(first_name, last_name, student_id, middle_name))
+
+#6
+def key_generator(*employee_names):
+    encrypted_keys = []
+    for name in employee_names:
+        first_char = name[0].lower()
+        last_char = name[-1].upper()
+        middle_chars = ''.join(str(ord(char)) for char in name[1:-1][::-1])
+        encrypted_key = first_char + middle_chars + last_char
+        encrypted_keys.append(encrypted_key)
+    return encrypted_keys
+
+# Example usage:
+key_list = key_generator("Alex", "Bob", "Trudy")
+print("Encrypted Keys:", key_list)
+
+#7
+def key_generator(*employee_names):
+    encrypted_keys = []
+    for name in employee_names:
+        first_char = name[0].lower()
+        last_char = name[-1].upper()
+        middle_chars = ''.join(str(ord(char)) for char in name[1:-1][::-1])
+        encrypted_key = first_char + middle_chars + last_char
+        encrypted_keys.append(encrypted_key)
+    return encrypted_keys
+
+# Example usage:
+key_list = key_generator("Alex", "Bob", "Trudy")
+print("Encrypted Keys:", key_list)
+
+
