@@ -1,4 +1,4 @@
-#1
+#1 
 def hospital_fee(**kwargs):
     max_amount = 0
     max_payers = []
