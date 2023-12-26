@@ -1,0 +1,347 @@
+ #1
+class CellPackage :
+    def __init__(self, price, data, talk_time, messages, cashback, validity):
+        self.d = int(data.strip("GB")) * 1024
+        self.talk_t = talk_time
+        self.messages = messages
+        self.c = (int(cashback.strip("%")) * price) // 100
+        self.validity = validity
+        self.p = price
+
+    def display_info(self):
+        if self.d != 0:
+            print(f'Data = {self.d} MB')
+        if self.talk_t:
+            print(f'Talktime = {self.talk_t} Minutes')
+        if self.messages:
+            print(f'SMS/MMS = {self.messages}')
+        print(f'Validity = {self.validity} Days')
+        print(f'--> Price = {self.p} tk')
+        if self.c:
+            print(f'Buy now to get {self.c} tk cashback.')
+
+pkg1 = CellPackage(150, '6 GB', 99, 20, '7%', 7)
+print('============= Package 1 =============')
+pkg1.display_info()
+
+pkg2 = CellPackage(700, '35 GB', 700, 0, '10%', 30)
+print('============= Package 2 =============')
+pkg2.display_info()
+
+pkg3 = CellPackage(120, '0 GB', 190, 0, '0%', 10)
+print('============= Package 3 =============')
+pkg3.display_info()
+
+
+#2i
+class Student:
+    def __init__(self):
+        self.name = None
+        self.cgpa = 0.0
+s1 = Student()
+s2 = Student()
+s3 = None
+s1.name = "Student One"
+s1.cgpa = 2.3
+s3 = s1
+s2.name = "Student Two"
+s2.cgpa = s3.cgpa + 1
+s3.name = "New Student"
+print(s1.name)
+print(s2.name)
+print(s3.name)
+print(s1.cgpa)
+print(s2.cgpa)
+print(s3.cgpa)
+s3 = s2
+s1.name = "old student"
+s2.name = "older student"
+s3.name = "oldest student"
+s2.cgpa = s1.cgpa - s3.cgpa + 4.5
+print(s1.name)
+print(s2.name)
+print(s3.name)
+print(s1.cgpa)
+print(s2.cgpa)
+print(s3.cgpa)
+
+
+#2ii
+class box:
+    def __init__(self, dimensions):
+        print("Creating a Box!")
+        self.height, self.width, self.breadth = dimensions
+
+    def boxDescription(self):
+        print(f"Height: {self.height}")
+        print(f"Width: {self.width}")
+        print(f"Breadth: {self.breadth}")
+
+    def volume(self):
+        return self.height * self.width * self.breadth
+
+print("Box 1")
+b1 = box([10, 10, 10])
+print("=========================")
+b1.boxDescription()
+print(b1.volume())
+print(f"Volume of the box is {b1.volume()} cubic units.")
+print("-------------------------")
+print("Box 2")
+b2 = box((30, 10, 10))
+print("=========================")
+b2.boxDescription()
+print(b2.volume())
+print(f"Volume of the box is {b2.volume()} cubic units.")
+b2.height = 300
+print("Updating Box 2!")
+print("Height:", b2.height)
+print("Width:", b2.width)
+print("Breadth:", b2.breadth)
+volume = b2.height * b2.width * b2.breadth
+print(f"Volume of the box is {volume} cubic units.")
+print("-------------------------")
+print("Box 3")
+b3 = b2
+b3.boxDescription()
+print(b3.volume())
+print(f"Volume of the box is {volume} cubic units.")
+
+
+#3
+class Vector3D:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+        print(f'Vector <{self.x}, {self.y}, {self.z}> has been created.')
+
+# Driver code
+v1 = Vector3D(2, -3, 1)
+v2 = Vector3D(-1, 4, 0)
+
+def magnitude(v):
+    return (v.x ** 2 + v.y ** 2 + v.z ** 2) ** 0.5
+
+def dot_product(v1, v2):
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+
+def cross_product(v1, v2):
+    x = v1.y * v2.z - v1.z * v2.y
+    y = v1.z * v2.x - v1.x * v2.z
+    z = v1.x * v2.y - v1.y * v2.x
+    return Vector3D(x, y, z)
+
+print(f'Magnitude of the first vector = {magnitude(v1)}')
+print(f'Magnitude of the second vector = {magnitude(v2)}')
+print(f'Dot product of the two vectors = {dot_product(v1, v2)}')
+
+cross_product_v = cross_product(v1, v2)
+print(f'Cross product of the two vectors = Vector <{cross_product_v.x}, {cross_product_v.y}, {cross_product_v.z}>')
+
+#4
+class abcTech:
+    def __init__(self, name, designation, department):
+        self.name = name
+        self.designation = designation
+        self.department = department
+        self.programming_skills = []
+        self.frameworks = []
+        print(f'Welcome to abcTech, {self.name}!')
+    def addProgrammingSkills(self, skills):
+        self.programming_skills.extend(skills)
+
+    def addFrameworks(self, frameworks):
+        self.frameworks.extend(frameworks)
+
+    def printInfo(self):
+        print('Name:', self.name)
+        print('Designation:', self.designation)
+        print('Department:', self.department)
+        print('Programming Skills:', ', '.join(self.programming_skills))
+        print('Frameworks:', ', '.join(self.frameworks))
+
+    def calculateSalary(self, base_salary, working_hours):
+        if working_hours > 144:
+            extra_hours = working_hours - 144
+            extra_payment = extra_hours * 800
+            return base_salary + extra_payment
+        else:
+            return base_salary
+
+print("-------------------------")
+b1 = abcTech("Tamim Hasan", "Software Engineer", "Android Development")
+print("-------------------------")
+b1.addProgrammingSkills(["Java", "Python"])
+b1.addProgrammingSkills(["Dart", "C++"])
+b1.addFrameworks(["Express.js", "React"])
+b1.printInfo()
+print("-------------------------")
+print(f"Your salary for this month is Tk. {b1.calculateSalary(45000, 156)}")
+print("-------------------------")
+print("-------------------------")
+b2 = abcTech("Jahin Khandoker", "Senior Developer", "App Development")
+print("-------------------------")
+b2.addProgrammingSkills(["Java", "Dart", "Swift"])
+b2.addFrameworks(["Flutter", "React Native"])
+b2.addFrameworks(["Xamarin"])
+b2.printInfo()
+print("-------------------------")
+
+#5
+class StudentDatabase:
+    def __init__(self, name, student_id):
+        self.name = name
+        self.student_id = student_id
+        self.grades = {}
+
+    def calculateGPA(self, courses, semester):
+        total_points = 0
+        total_credits = 0
+        for course in courses:
+            course_name, grade = course.split(": ")
+            credits = 3  # Each course is of 3 credits
+            if grade == 'A+':
+                grade_points = 4.0
+            elif grade == 'A':
+                grade_points = 4.0
+            elif grade == 'A-':
+                grade_points = 3.7
+            elif grade == 'B+':
+                grade_points = 3.3
+            elif grade == 'B':
+                grade_points = 3.0
+            elif grade == 'B-':
+                grade_points = 2.7
+            elif grade == 'C+':
+                grade_points = 2.3
+            elif grade == 'C':
+                grade_points = 2.0
+            else:
+                grade_points = 0
+
+            total_points += grade_points * credits
+            total_credits += credits
+
+            if semester not in self.grades:
+                self.grades[semester] = {}
+            self.grades[semester][course_name] = grade_points
+
+        gpa = total_points / total_credits
+        if semester in self.grades:
+            self.grades[semester]["GPA"] = gpa
+
+    def printDetails(self):
+        print(f'Name: {self.name}')
+        print(f'ID: {self.student_id}')
+        for semester, courses in self.grades.items():
+            print(f'Courses taken in {semester}: ')
+            for course, gpa in courses.items():
+                if course != "GPA":
+                    print(course)
+            if "GPA" in courses:
+                print(f'GPA: {courses["GPA"]}')
+        print()
+
+# Driver code
+s1 = StudentDatabase('Pietro', '10101222')
+s1.calculateGPA(['CSE230: 4.0', 'CSE220: 4.0', 'MAT110: 4.0'], 'Summer2020')
+s1.calculateGPA(['CSE250: 3.7', 'CSE330: 4.0'], 'Summer2021')
+print(f'Grades for {s1.name}\n{s1.grades}')
+print('---------------------------------')
+s1.printDetails()
+
+s2 = StudentDatabase('Wanda', '10103332')
+s2.calculateGPA(['CSE111: 3.7', 'CSE260: 3.7', 'ENG101: 4.0'], 'Summer2022')
+print('---------------------------------')
+print(f'Grades for {s2.name}\n{s2.grades}')
+print('---------------------------------')
+s2.printDetails()
+
+#6
+class Store:
+    def __init__(self, initial_balance):
+        print("New branch created!")
+        self.balance = initial_balance
+        self.total_items = 0
+        self.inventory = {}
+
+    def viewAllItems(self):
+        if self.total_items == 0:
+            print("There are no items in your inventory")
+        else:
+            items = ', '.join(self.inventory.keys())
+            print(f'All Items: {items}')
+
+    def viewAllItemDetails(self):
+        if self.total_items == 0:
+            print("There are no items in your inventory")
+        else:
+            print(self.inventory)
+
+    def add_item(self, item_details):
+        item_name, stock, buying_price, selling_price = item_details
+        if item_name in self.inventory:
+            self.inventory[item_name]['stock'] += stock
+        else:
+            self.inventory[item_name] = {'stock': stock, 'buying_price': buying_price, 'selling_price': selling_price}
+        self.balance -= stock * buying_price
+        self.total_items += 1
+        print(f'Item added: {item_name}')
+
+    def sell_item(self, item_name, quantity):
+        if item_name in self.inventory and self.inventory[item_name]['stock'] >= quantity:
+            self.inventory[item_name]['stock'] -= quantity
+            self.balance += quantity * self.inventory[item_name]['selling_price']
+            print(f'Sold {quantity} units of {item_name}')
+        else:
+            print(f"Sorry! {item_name} is not available at your desired quantity. Currently, we have: {self.inventory[item_name]['stock']}")
+
+    def restock_item(self, item_name, quantity):
+        if item_name in self.inventory:
+            self.inventory[item_name]['stock'] += quantity
+            self.balance -= quantity * self.inventory[item_name]['buying_price']
+            print(f'Restocked item: {item_name}, Current Stock: {self.inventory[item_name]["stock"]}')
+
+# Driver
+print("==========================")
+branch1 = Store(5000)
+print(f"Current Balance: {branch1.balance}")
+print(f"Total items: {branch1.total_items}")
+branch1.viewAllItems()
+branch1.viewAllItemDetails()
+print("==========================")
+print(f"Current Balance: {branch1.balance}")
+branch1.add_item(["ChaCha Noodles", 10, 5, 8])
+print(f"Current Balance: {branch1.balance}")
+branch1.add_item(["Sparrow Shampoo", 5, 10, 20])
+print(f"Current Balance: {branch1.balance}")
+print("==========================")
+branch1.viewAllItems()
+print()
+branch1.viewAllItemDetails()
+print()
+print("==========================")
+print(f"Current Balance: {branch1.balance}\n")
+branch1.sell_item("ChaCha Noodles", 15)
+print(f"Current Balance: {branch1.balance}\n")
+branch1.viewAllItemDetails()
+print()
+branch1.sell_item("ChaCha Noodles", 10)
+print()
+print(f"Current Balance: {branch1.balance}\n")
+branch1.viewAllItemDetails()
+print()
+print("==========================")
+print(f"Current Balance: {branch1.balance}\n")
+branch1.restock_item("ChaCha Noodles", 5)
+print()
+branch1.viewAllItemDetails()
+print()
+print(f"Current Balance: {branch1.balance}\n")
+print("==========================")
+
+
+
+
+
