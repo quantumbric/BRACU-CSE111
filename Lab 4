@@ -1,0 +1,228 @@
+#1
+class Student:
+    def __init__(self, name, cgpa, credits=9, department="CSE"):
+        self.n = name
+        self.cg = cgpa
+        self.creds = credits
+        self.dept = department
+
+
+    def checkScholarshipEligibility(self):
+        if self.cg >= 3.7 and self.creds > 10 :
+            self.sc = "Merit-based scholarship"
+        elif self.cg >= 3.5 and self.creds > 10:
+            self.sc = "Need-based scholarship"
+        else:
+            self.sc = "No scholarship"
+
+
+        if self.sc == "No scholarship":
+            print(f"{self.n} is not eligible for scholarship.")
+        else:
+            print(f"{self.n} is eligible for {self.sc}.")
+
+    def showDetails(self):
+        print(f"Name: {self.n}")
+        print(f"Department: {self.dept}")
+        print(f"CGPA: {self.cg}")
+        print(f"Number of Credits: {self.creds}")
+        print(f"Scholarship Status: {self.sc}")
+
+# Driver Code
+print('--------------------------')
+std1 = Student("Alif", 3.99, 12)
+print('--------------------------')
+std1.checkScholarshipEligibility()
+print('--------------------------')
+std1.showDetails()
+print('--------------------------')
+std2 = Student("Mim", 3.4)
+std3 = Student("Henry", 3.5, 15, "BBA")
+print('--------------------------')
+std2.checkScholarshipEligibility()
+print('--------------------------')
+std3.checkScholarshipEligibility()
+print('--------------------------')
+std2.showDetails()
+print('--------------------------')
+std3.showDetails()
+print('--------------------------')
+std4 = Student("Bob", 4.0, 6, "CSE")
+print('--------------------------')
+std4.checkScholarshipEligibility()
+print('--------------------------')
+std4.showDetails()
+
+#2
+class Foodie:
+    menu = {'Chicken Lollipop': 15, 'Beef Nugget': 20, 'Americano': 180, 'Red Velvet': 150, 'Prawn Tempura': 80, 'Saute Veg': 200}
+
+    def __init__(self, name):
+        self.name = name
+        self.cart = []
+        self.total_spent = 0
+        self.tips = 0
+
+    def show_orders(self):
+        if not self.cart:
+            print(f"{self.name} has 0 item(s) in the cart.")
+            print("Items: []")
+            print("Total spent: 0.")
+        else:
+            print(f"{self.name} has {len(self.cart)} item(s) in the cart.")
+            print(f"Items: {self.cart}")
+            print(f"Total spent: {self.total_spent}.")
+
+    def order(self, *orders):
+        for order in orders:
+            item, quantity = order.split('-')
+            quantity = int(quantity)
+            if item in Foodie.menu:
+                price_per_unit = Foodie.menu[item]
+                total_price = price_per_unit * quantity
+                self.cart.append(item)
+                self.total_spent += total_price
+                print(f"Ordered - {item}, quantity - {quantity}, price (per Unit) - {price_per_unit}.")
+                print(f"Total price - {total_price}")
+
+    def pay_tips(self, tips=0):
+        if tips > 0:
+            self.tips = tips
+            print(f'Gives {tips}/- tips to the waiter.')
+
+# Driver Code
+menu = {'Chicken Lollipop': 15, 'Beef Nugget': 20, 'Americano': 180, 'Red Velvet': 150, 'Prawn Tempura': 80, 'Saute Veg': 200}
+f1 = Foodie('Frodo')
+print(f1.show_orders())
+print('1----------------------')
+f1.order('Chicken Lollipop-3', 'Beef Nugget-6', 'Americano-1')
+print('2----------------------')
+print(f1.show_orders())
+print('3----------------------')
+f1.order('Red Velvet-1')
+print('4----------------------')
+f1.pay_tips(20)
+print('5----------------------')
+print(f1.show_orders())
+f2 = Foodie('Bilbo')
+print('6----------------------')
+f2.order('Prawn Tempura-6', 'Saute Veg-1')
+print('7----------------------')
+f2.pay_tips()
+print('8----------------------')
+print(f2.show_orders())
+
+#3
+class Shopidify:
+    def __init__(self, username=None):
+        self.username = username
+        self.cart = {}
+        self.history = []
+        print(f"Welcome to Shopidify {username if username else ''}")
+
+    def add_to_cart(self, *items):
+        if self.username:
+            for i in range(0, len(items), 2):
+                item = items[i]
+                quantity = items[i + 1] if i + 1 < len(items) else 1
+                self.cart[item] = self.cart.get(item, 0) + quantity
+        else:
+            print("A guest account cannot add items to the cart.")
+
+    def display_cart(self):
+        if self.cart:
+            print(f"Items in the cart for {self.username if self.username else 'Guest'}:")
+            for item, quantity in self.cart.items():
+                print(f"- {item}: {quantity}x")
+        else:
+            print("Cart is empty.")
+
+    def checkout(self):
+        if self.cart:
+            self.history.append(self.cart)
+            self.cart = {}
+            print(f"Checkout completed for {self.username if self.username else 'Guest'}")
+        else:
+            print("Cart is empty, cannot proceed to checkout.")
+
+    def display_history(self):
+        for i, transaction in enumerate(self.history, start=1):
+            print(f"Purchase history for {self.username if self.username else 'Guest'}: Transaction {i}:")
+            for item, quantity in transaction.items():
+                print(f"- {item}: {quantity}x")
+
+# Driver Code
+guest_account = Shopidify()
+print("1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account = Shopidify("John")
+print("2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.add_to_cart("Air Jordan", 2)
+guest_account.add_to_cart("Luffy Action Figure")
+guest_account.display_cart()
+print("3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.add_to_cart(["Chocolate Chip Cookies", 3, "Goku Action Figure", 2, "Dumbbells-5kg", 2])
+john_account.display_cart()
+print("4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.add_to_cart("Air Jordan")
+guest_account.display_cart()
+print("5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.checkout()
+print("6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.display_history()
+print("7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.checkout()
+print("8xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.display_history()
+print("9xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+
+#4
+class Author:
+    def __init__(self, author_name=None):
+        self.author_name = author_name
+        self.books = {}
+        if author_name:
+            print(f"Welcome {author_name} to Shopidify")
+
+    def addBook(self, book_name, genre):
+        if self.author_name:
+            if book_name not in self.books:
+                self.books[book_name] = genre
+                print(f"A book is added to the author {self.author_name}")
+            else:
+                print(f"The book {book_name} already exists for the author {self.author_name}")
+        else:
+            print("A book cannot be added without an author name")
+
+    def setName(self, author_name):
+        self.author_name = author_name
+
+    def printDetail(self):
+        if self.author_name:
+            print("Number of Book(s):", len(self.books))
+            print("Author Name:", self.author_name)
+            for genre, book_name in self.books.items():
+                print(f"{genre}: {book_name}" if genre else book_name)
+        else:
+            print("A book cannot be added without an author name")
+
+# Driver Code
+a1 = Author()
+print("=================================")
+a1.addBook("Ice", "Science Fiction")
+print("=================================")
+a1.setName("Anna Kavan")
+a1.addBook("Ice", "Science Fiction")
+a1.printDetail()
+print("=================================")
+
+a2 = Author("Humayun Ahmed")
+a2.addBook("Onnobhubon", "Science Fiction")
+a2.addBook("Megher Upor Bari", "Horror")
+print("=================================")
+a2.printDetail()
+
+a2.addBook("Ireena", "Science Fiction")
+print("=================================")
+a2.printDetail()
+print("=================================")
