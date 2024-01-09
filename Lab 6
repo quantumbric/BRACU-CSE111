@@ -1,1 +1,36 @@
 #1
+class Student:
+    ID = 0
+
+    def __init__(self, name, department, age, cgpa):
+        self.n = name
+        self.dept = department
+        self.age = age
+        self.cg = cgpa
+        Student.ID += 1
+        self.ID = Student.ID
+
+    def showDetails(self):
+        print(f"ID: {self.ID}")
+        print(f"Name: {self.n}")
+        print(f"Department: {self.dept}")
+        print(f"Age: {self.age}")
+        print(f"CGPA: {self.cg}")
+
+
+    @classmethod
+    def from_String(cls, details):
+        name, department, age, cgpa = details.split("-")
+        return cls(name, department, int(age), float(cgpa))
+
+s1 = Student("Samin", "CSE", 21, 3.91)
+s1.showDetails()
+print("-----------------------")
+s2 = Student("Fahim", "ECE", 21, 3.85)
+s2.showDetails()
+print("-----------------------")
+s3 = Student("Tahura", "EEE", 22, 3.01)
+s3.showDetails()
+print("-----------------------")
+s4 = Student.from_String("Sumaiya-BBA-23-3.96")
+s4.showDetails()
